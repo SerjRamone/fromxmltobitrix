@@ -105,9 +105,10 @@ abstract class CImport1C {
 	 */
 	public function __construct ($params = array()) {
 		$this->startMemoryUsage = memory_get_usage();
-		$mtime = microtime();
-		$mtime = explode(' ', $mtime);
-		$this->timeStart = $mtime[1] + $mtime[0];
+		$mtime = microtime(true);
+		#$mtime = explode(' ', $mtime);
+		#$this->timeStart = $mtime[1] + $mtime[0];
+		$this->timeStart = $mtime;
 		$this->pathToXML = $params['PATH_TO_XML'];
 		try {
 			if (!file_exists($this->pathToXML)) {
@@ -130,9 +131,9 @@ abstract class CImport1C {
 		$arExpl = explode('/', $this->pathToXML);
 		$filename = $arExpl[count($arExpl)-1];
 
-		$mtime = microtime();
-		$mtime = explode(' ',$mtime);
-		$mtime = $mtime[1] + $mtime[0];
+		$mtime = microtime(true);
+		#$mtime = explode(' ',$mtime);
+		#$mtime = $mtime[1] + $mtime[0];
 		$this->log['TOTAL_TIME'] = ($mtime - $this->timeStart);
 		$end_memory_usage = memory_get_usage();
 		$this->log['TOTAL_MEMORY_USAGE'] = $end_memory_usage - $this->startMemoryUsage;
